@@ -1,4 +1,3 @@
-
 INSERT INTO members(member_id, member_name, member_address, reg_date) 
 VALUES
 ('C101', 'Alice Johnson', '123 Main St', '2021-05-15'),
@@ -13,6 +12,7 @@ VALUES
 ('C110', 'Jack Wilson', '678 Pine St', '2022-02-25'),
 ('C118', 'Sam', '133 Pine St', '2024-06-01'),    
 ('C119', 'John', '143 Main St', '2024-05-01');
+
 SELECT * FROM members;
 
 INSERT INTO branch(branch_id, manager_id, branch_address, contact_no) 
@@ -22,6 +22,7 @@ VALUES
 ('B003', 'E109', '789 Oak St', '+919099988678'),
 ('B004', 'E110', '567 Pine St', '+919099988679'),
 ('B005', 'E110', '890 Maple St', '+919099988680');
+
 SELECT * FROM branch;
 
 INSERT INTO employees(emp_id, emp_name, position, salary, branch_id) 
@@ -37,6 +38,7 @@ VALUES
 ('E109', 'Daniel Anderson', 'Manager', 57000.00, 'B003'),
 ('E110', 'Laura Martinez', 'Manager', 41000.00, 'B005'),
 ('E111', 'Christopher Lee', 'Assistant', 65000.00, 'B005');
+
 SELECT * FROM employees;
 
 INSERT INTO books(isbn, book_title, category, rental_price, status, author, publisher) 
@@ -115,6 +117,12 @@ VALUES
 ('IS139', 'C109', 'Harry Potter and the Sorcerers Stone', '2024-04-12', '978-0-679-76489-8', 'E105'),
 ('IS140', 'C110', 'Animal Farm', '2024-04-13', '978-0-330-25864-8', 'E102');
 
+INSERT INTO issued_status(issued_id, issued_member_id, issued_book_name, issued_date, issued_book_isbn, issued_emp_id)
+VALUES
+('IS101', 'C101', 'The Catcher in the Rye', '2023-06-01', '978-0-553-29698-2', 'E101'),
+('IS103', 'C103', 'Animal Farm', '2023-08-01', '978-0-330-25864-8', 'E103'),
+('IS105', 'C105', 'The Great Gatsby', '2023-06-05', '978-0-525-47535-5', 'E105');
+
 INSERT INTO return_status(return_id, issued_id, return_date) 
 VALUES
 ('RS101', 'IS101', '2023-06-06'),
@@ -135,23 +143,20 @@ VALUES
 ('RS116', 'IS118', '2024-05-25'),
 ('RS117', 'IS119', '2024-05-27'),
 ('RS118', 'IS120', '2024-05-29');
-SELECT * FROM issued_status;
-
 
 INSERT INTO issued_status(issued_id, issued_member_id, issued_book_name, issued_date, issued_book_isbn, issued_emp_id)
 VALUES
-('IS151', 'C118', 'The Catcher in the Rye', CURRENT_DATE - INTERVAL '24 days',  '978-0-553-29698-2', 'E108'),
-('IS152', 'C119', 'The Catcher in the Rye', CURRENT_DATE - INTERVAL '13 days',  '978-0-553-29698-2', 'E109'),
-('IS153', 'C106', 'Pride and Prejudice', CURRENT_DATE - INTERVAL '7 days',  '978-0-14-143951-8', 'E107'),
-('IS154', 'C105', 'The Road', CURRENT_DATE - INTERVAL '32 days',  '978-0-375-50167-0', 'E101');
-
+('IS151', 'C118', 'The Catcher in the Rye', DATE_SUB(CURDATE(), INTERVAL 24 DAY), '978-0-553-29698-2', 'E108'),
+('IS152', 'C119', 'The Catcher in the Rye', DATE_SUB(CURDATE(), INTERVAL 13 DAY), '978-0-553-29698-2', 'E109'),
+('IS153', 'C106', 'Pride and Prejudice', DATE_SUB(CURDATE(), INTERVAL 7 DAY), '978-0-14-143951-8', 'E107'),
+('IS154', 'C105', 'The Road', DATE_SUB(CURDATE(), INTERVAL 32 DAY), '978-0-375-50167-0', 'E101');
 
 ALTER TABLE return_status
-ADD Column book_quality VARCHAR(15) DEFAULT('Good');
+ADD book_quality VARCHAR(15) DEFAULT 'Good';
 
 UPDATE return_status
 SET book_quality = 'Damaged'
-WHERE issued_id 
-    IN ('IS112', 'IS117', 'IS118');
+WHERE issued_id IN ('IS112', 'IS117', 'IS118');
+
 SELECT * FROM return_status;
 
