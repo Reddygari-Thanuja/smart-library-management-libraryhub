@@ -29,25 +29,3 @@ Building robust database pipelines requires more than just standard database que
 * **Business Logic Encapsulation:** Moves algorithmic calculations (like multi-table state updates) inside fast, secure database **Stored Procedures** rather than brittle application-layer code.
 
 ---
-
-
-### Prerequisites
-
-Ensure you have a relational database management client installed (e.g., PostgreSQL or MySQL) alongside your preferred visual execution UI (e.g., pgAdmin, DBeaver, or VS Code SQL extensions).
-
-### Step-by-Step Installation
-
-1. **Clone the Repository:**
-```bash
-git clone https://github.com/Reddygari-Thanuja/smart-library-management-libraryhub.git
-cd smart-library-management-libraryhub
-
-```
-
-2. **Establish the Database Schema:**
-Open your database UI editor, connect to your server instance, and execute the complete [Schema DDL](https://www.google.com/search?q=%23schema-ddl) script to construct the primary tables.
-3. **Insert Core Datasets:**
-Run your project's data seeding scripts to populate test rows across `branch`, `employees`, `members`, and `books`.
-4. **Initialize Procedures & Query Metrics:**
-Execute the stored procedure blocks (e.g., `issue_book`, `add_return_records`) to initialize your operational transaction layers.
-
