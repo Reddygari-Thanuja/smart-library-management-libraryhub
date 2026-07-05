@@ -61,6 +61,7 @@ CREATE TABLE return_status (
     return_book_isbn VARCHAR(20),
     FOREIGN KEY (issued_id) REFERENCES issued_status(issued_id)
 ); 
+
 INSERT INTO members(member_id, member_name, member_address, reg_date) 
 VALUES
 ('C101', 'Alice Johnson', '123 Main St', '2021-05-15'),
