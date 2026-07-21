@@ -1,9 +1,6 @@
 # smart-library-management-libraryhub
-# Library Management System using SQL
-## Project Overview
 
 * **Project Title:** Library Management System
-* **Level:** Intermediate
 * **Database Platform:** PostgreSQL / MySQL (`library_db`)
 
 ---
